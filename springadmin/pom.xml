@@ -27,6 +27,13 @@
             <artifactId>spring-boot-admin-server-ui</artifactId>
             <version>${springboot-admin.version}</version>
         </dependency>
+
+        <!--springadmin client-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${springboot-admin.version}</version>
+        </dependency>
     </dependencies>
 
 

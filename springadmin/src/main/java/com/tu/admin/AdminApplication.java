@@ -4,6 +4,7 @@ import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @Description springboot admin 监控启动类
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @EnableAdminServer 开启adminserver监控
  *
  */
+@Configuration
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @EnableAdminServer
 public class AdminApplication {
