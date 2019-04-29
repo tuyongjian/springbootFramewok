@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.tu.springbootFramewok</groupId>
-        <artifactId>springbootFramewok</artifactId>
+        <groupId>com.tu.springbootFramework</groupId>
+        <artifactId>springbootFramework</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.tu.mq</groupId>
