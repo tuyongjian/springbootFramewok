@@ -19,7 +19,7 @@
         <!--springboot admin 服务端jar -->
         <dependency>
             <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-server</artifactId>
+            <artifactId>spring-boot-admin-starter-server</artifactId>
             <version>${springboot-admin.version}</version>
         </dependency>
         <dependency>
