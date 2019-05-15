@@ -19,6 +19,7 @@
     <module>redis</module>
     <module>springadmin</module>
     <module>springadminclient</module>
+    <module>docker</module>
   </modules>
 
   <!-- 定义公共资源版本 -->
