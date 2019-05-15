@@ -21,6 +21,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    /**
+     * 这些不配置，swagger会自动扫描所有包
+     * @return
+     */
 
 /*    @Bean
     public Docket docket(){

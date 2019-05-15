@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.*;
 public class SwaggerAction {
 
     /**
+     * 这些参数都可以不加 不加的话，swagger的页面不会有那么多参数说明而已
+     * 如果对方法加上这些参数，代码的耦合性太大了
+     *
+     *
      *  @Api()：作用于类上，表示这个类是swagger的资源。
      *   tags = ”说明该类的作用“
      *  @ApiOperation()：用在请求的方法上，说明的方法的用户和作用
