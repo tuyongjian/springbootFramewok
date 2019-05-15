@@ -11,7 +11,7 @@
 
     <groupId>com.tu.docker</groupId>
     <artifactId>docker</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>docker</name>
 
