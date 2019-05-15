@@ -22,14 +22,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
 
-    @Bean
+/*    @Bean
     public Docket docket(){
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
-//                   当前包路径
+                //当前包路径
                 .apis(RequestHandlerSelectors.basePackage("com.tu.swagger.controller"))
                 .paths(PathSelectors.any()).build();
 
-    }
+    }*/
     //构建api文档的详细信息函数
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()

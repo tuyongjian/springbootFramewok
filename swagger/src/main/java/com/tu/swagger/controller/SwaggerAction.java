@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "swagger")
-@Api("swaggerTestController相关api")
+//@Api("swaggerTestController相关api")
 public class SwaggerAction {
 
     /**
@@ -38,7 +38,7 @@ public class SwaggerAction {
      */
 
 
-    @ApiOperation(value = "根据id查询学生的信息",notes = "查询数据库中某个学生的信息")
+/*    @ApiOperation(value = "根据id查询学生的信息",notes = "查询数据库中某个学生的信息")
     @ApiImplicitParam(name ="id",value = "学生id",paramType = "path",required = true,dataType = "String")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id",value = "用户id",dataType = "String",paramType = "query",example = "1112")
@@ -46,11 +46,16 @@ public class SwaggerAction {
     @ApiResponses({
             @ApiResponse(code=400,message = "请求参数没有填好"),
             @ApiResponse(code=404,message="请求路径没有找到")
-    })
+    })*/
     @GetMapping(value = "testRest")
     public RestMessgae testGetResetful(@RequestParam(value = "id") String id){
         RestMessgae restMessgae = new RestMessgae();
         restMessgae.setData(id);
         return restMessgae;
+    }
+
+    @GetMapping(value = "hello")
+    public String hello(){
+        return "Hello World";
     }
 }
