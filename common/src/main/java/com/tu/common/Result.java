@@ -13,6 +13,24 @@ public class Result {
 
     private Object data;
 
+    public Result() {
+    }
+
+    public Result(String state) {
+        this.state = state;
+    }
+
+    public Result(String state, String message) {
+        this.state = state;
+        this.message = message;
+    }
+
+    public Result(String state, String message, Object data) {
+        this.state = state;
+        this.message = message;
+        this.data = data;
+    }
+
     public String getState() {
         return state;
     }
