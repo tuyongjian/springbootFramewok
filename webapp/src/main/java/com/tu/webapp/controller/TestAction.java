@@ -1,5 +1,6 @@
 package com.tu.webapp.controller;
 
+import com.tu.common.MyException;
 import com.tu.common.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +24,10 @@ public class TestAction {
     public Result test(){
         int i=1/0;
         return new Result();
+    }
+
+    @RequestMapping(value = "test1")
+    public Result test1(){
+       throw new MyException("500","test exception");
     }
 }

@@ -44,4 +44,15 @@ public class MyControllerAdvice {
         result.setMessage(ex.getMessage());
         return result;
     }
+
+    @ResponseBody
+    @ExceptionHandler(value = MyException.class)
+    public Result myErrorHandler(MyException ex) {
+        Result result = new Result();
+        result.setState(ex.getCode());
+        result.setMessage(ex.getMsg());
+        return result;
+    }
+
+
 }
