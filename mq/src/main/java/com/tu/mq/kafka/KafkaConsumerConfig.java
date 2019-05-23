@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Description
+ * @Description 消费者配置
  * @Classname KafkaConsumerConfig
  * @Date 2019/5/23 10:25
  * @Created by tuyongjian

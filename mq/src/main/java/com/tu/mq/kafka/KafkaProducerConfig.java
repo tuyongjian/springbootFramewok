@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Description
+ * @Description 生产者配置
  * @Classname KafkaProducerConfig
  * @Date 2019/5/23 9:46
  * @Created by tuyongjian

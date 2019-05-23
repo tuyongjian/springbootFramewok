@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 
 /**
- * @Description
+ * @Description 监听，消费消息
  * @Classname Listener
  * @Date 2019/5/23 10:40
  * @Created by tuyongjian
