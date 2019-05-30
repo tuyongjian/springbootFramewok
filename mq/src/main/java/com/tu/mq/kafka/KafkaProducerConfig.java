@@ -3,6 +3,7 @@ package com.tu.mq.kafka;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -54,6 +55,7 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<String, String>(producerConfigs());
     }
 
+    @Bean
     public KafkaTemplate<String,String> kafkaTemplate(){
         return new KafkaTemplate<String, String>(producerFactory());
     }
