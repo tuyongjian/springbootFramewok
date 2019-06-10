@@ -61,24 +61,12 @@
             <artifactId>activemq-pool</artifactId>
         </dependency>
 
-
-        <!--activeMQ jar-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-activemq</artifactId>
-        </dependency>
-
         <!--springboot 2.1以上版本的如果启用连接池，需要这个jar-->
         <!-- <dependency>
              <groupId>org.messaginghub</groupId>
              <artifactId>pooled-jms</artifactId>
              <version>1.0.2</version>
          </dependency>-->
-
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-pool</artifactId>
-        </dependency>
     </dependencies>
 
 
