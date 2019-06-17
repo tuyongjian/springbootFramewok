@@ -12,15 +12,15 @@
 
   <!--各个子模块集合-->
   <modules>
-    <module>webapp</module>
-    <module>curd</module>
-    <module>mq</module>
     <module>common</module>
+    <module>curd</module>
     <module>redis</module>
     <module>springadmin</module>
     <module>springadminclient</module>
     <module>docker</module>
     <module>swagger</module>
+    <module>mq</module>
+    <module>webapp</module>
   </modules>
 
   <!-- 定义公共资源版本 -->
@@ -155,7 +155,7 @@
   </dependencies>
 
   <build>
-    <finalName>springbootFramewok</finalName>
+    <finalName>springbootFramework</finalName>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>

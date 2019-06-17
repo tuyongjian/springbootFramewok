@@ -13,7 +13,10 @@
     <artifactId>springadmin</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
+    <name>springadmin</name>
+    <build>
+        <finalName>springadmin</finalName>
+    </build>
 
     <dependencies>
         <!--springboot admin 服务端jar -->
