@@ -21,6 +21,7 @@
     <module>swagger</module>
     <module>mq</module>
     <module>webapp</module>
+      <module>apollo</module>
   </modules>
 
   <!-- 定义公共资源版本 -->
