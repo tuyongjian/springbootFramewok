@@ -2,7 +2,6 @@ package com.tu.mq.activemq;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.pool.PooledConnectionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -33,7 +32,7 @@ public class ActiveMqConfig {
         PooledConnectionFactory pooledConnectionFactory = new PooledConnectionFactory(
                 factory);
         pooledConnectionFactory.setMaximumActiveSessionPerConnection(10);
-        pooledConnectionFactory.setMaxConnections(10);
+        pooledConnectionFactory.setMaxConnections(1);
         pooledConnectionFactory.setIdleTimeout(3000);
         pooledConnectionFactory.setExpiryTimeout(1000);
         return pooledConnectionFactory;
