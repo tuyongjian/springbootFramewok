@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RabbitListener(queues = "queue")
-public class Consumer {
+public class RabbitConsumer {
 
-    private Logger logger = LoggerFactory.getLogger(Consumer.class);
+    private Logger logger = LoggerFactory.getLogger(RabbitConsumer.class);
 
     @RabbitHandler
     public void process(String  message){

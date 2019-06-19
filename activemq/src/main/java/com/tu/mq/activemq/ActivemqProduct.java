@@ -22,7 +22,7 @@ import javax.jms.Session;
  */
 @RestController
 @RequestMapping(value = "activemq")
-public class product {
+public class ActivemqProduct {
 
     @Autowired
     private JmsTemplate jmsTemplate;

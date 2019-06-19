@@ -1,6 +1,5 @@
 package com.tu.mq.activemq;
 
-import com.tu.mq.rabbitmq.Consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.annotation.JmsListener;
@@ -13,9 +12,9 @@ import org.springframework.stereotype.Service;
  * @Created by tuyongjian
  */
 @Service
-public class consumer {
+public class ActivemqConsumer {
 
-    private Logger logger = LoggerFactory.getLogger(Consumer.class);
+    private Logger logger = LoggerFactory.getLogger(ActivemqConsumer.class);
 
     @JmsListener(destination = "tu")
     public void readmsg(String msg){

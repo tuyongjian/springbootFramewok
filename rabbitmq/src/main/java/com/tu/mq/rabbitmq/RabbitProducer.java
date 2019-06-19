@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @Created by tuyongjian
  */
 @Service
-public class Producer {
+public class RabbitProducer {
 
     @Autowired
     AmqpTemplate amqpTemplate;

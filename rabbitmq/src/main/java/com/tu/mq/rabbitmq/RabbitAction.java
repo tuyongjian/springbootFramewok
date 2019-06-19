@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RabbitAction {
 
     @Autowired
-    Producer producer;
+    RabbitProducer producer;
 
     @RequestMapping(value = "test",method = RequestMethod.POST)
     public void test(){

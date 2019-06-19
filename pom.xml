@@ -19,9 +19,11 @@
     <module>springadminclient</module>
     <module>docker</module>
     <module>swagger</module>
-    <module>mq</module>
+	<module>kafka</module>
+	<module>activemq</module>
+    <module>rabbitmq</module>
     <module>webapp</module>
-      <module>apollo</module>
+    <module>apollo</module>
   </modules>
 
   <!-- 定义公共资源版本 -->

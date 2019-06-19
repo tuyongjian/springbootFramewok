@@ -11,10 +11,10 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @Created by tuyongjian
  */
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
-public class MQApplication {
+public class KafkaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MQApplication.class,args);
+        SpringApplication.run(KafkaApplication.class,args);
 
     }
 

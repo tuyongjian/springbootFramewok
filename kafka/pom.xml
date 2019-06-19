@@ -9,12 +9,12 @@
         <artifactId>springbootFramework</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.tu.mq</groupId>
-    <artifactId>mq</artifactId>
+    <groupId>com.tu.kafka</groupId>
+    <artifactId>kafka</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>mq</name>
+    <name>kafka</name>
 
     <dependencies>
 
@@ -39,41 +39,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!-- 添加springboot对amqp的支持 springboot logback 和log4j之间的冲突简直是神坑-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!--springboot activemq jar -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-activemq</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-pool</artifactId>
-        </dependency>
-
-        <!--springboot 2.1以上版本的如果启用连接池，需要这个jar-->
-        <!-- <dependency>
-             <groupId>org.messaginghub</groupId>
-             <artifactId>pooled-jms</artifactId>
-             <version>1.0.2</version>
-         </dependency>-->
     </dependencies>
 
 
     <build>
-        <finalName>mq</finalName>
+        <finalName>kafka</finalName>
     </build>
 
 </project>
