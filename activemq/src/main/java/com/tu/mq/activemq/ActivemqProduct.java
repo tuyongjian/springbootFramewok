@@ -3,6 +3,8 @@ package com.tu.mq.activemq;
 import com.alibaba.fastjson.JSON;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,20 +27,20 @@ import javax.jms.Session;
 public class ActivemqProduct {
 
     @Autowired
+    @Qualifier("firstJmsTemplate")
     private JmsTemplate jmsTemplate;
 
 
     @RequestMapping(value = "send",method = RequestMethod.POST)
     public void send(@RequestParam(value = "msg")String msg){
 
-        MessageCreator mc = createMsg(msg);
-        int defaultPriority = jmsTemplate.getPriority();
-        jmsTemplate.setExplicitQosEnabled(true);
-        jmsTemplate.setPriority(1);
-        jmsTemplate.send(new ActiveMQQueue("tu"),mc);
+
+        for (int i = 0; i <1000 ; i++) {
+            MessageCreator mc = createMsg(msg);
+            jmsTemplate.send(new ActiveMQQueue("tu"),mc);
+        }
+
         //还原
-        jmsTemplate.setPriority(defaultPriority);
-        jmsTemplate.setExplicitQosEnabled(false);
     }
 
 
