@@ -1,4 +1,3 @@
-/*
 package com.tu.mq.activemq;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -15,13 +14,12 @@ import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.ConnectionFactory;
 
-*/
-/**
+/*
  * @Description
  * @Classname ActiveMqConfig
  * @Date 2019/6/19 14:42
- * @Created by tuyongjian
- *//*
+ * @Created by tuyongjian*/
+
 
 @Configuration
 public class ActiveMqConfig {
@@ -125,4 +123,4 @@ public class ActiveMqConfig {
         return template;
     }
 
-}*/
+}
