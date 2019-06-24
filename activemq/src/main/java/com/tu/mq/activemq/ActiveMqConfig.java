@@ -24,8 +24,6 @@ import javax.jms.ConnectionFactory;
 @Configuration
 public class ActiveMqConfig {
 
-    @Value("${spring.inner.activemq.MaximumActiveSessionPerConnection}")
-    private int MaximumActiveSessionPerConnection;
 
     @Value("${spring.inner.activemq.MaxConnections}")
     private int maxConnections;
@@ -39,9 +37,6 @@ public class ActiveMqConfig {
     @Value("${spring.inner.activemq.SessionAcknowledgeMode}")
     private int sessionAcknowledgeMode;
 
-    @Value("${spring.out.activemq.MaximumActiveSessionPerConnection}")
-    private int MaximumActiveSessionPerConnection1;
-
     @Value("${spring.out.activemq.MaxConnections}")
     private int maxConnections1;
 
@@ -53,6 +48,7 @@ public class ActiveMqConfig {
 
     @Value("${spring.out.activemq.SessionAcknowledgeMode}")
     private int sessionAcknowledgeMode1;
+
 
     @Bean(name = "innerConnectionFactory")
     @Primary
@@ -66,7 +62,6 @@ public class ActiveMqConfig {
         factory.setPassword(password);
 
         PooledConnectionFactory pooledConnectionFactory = new PooledConnectionFactory(factory);
-        pooledConnectionFactory.setMaximumActiveSessionPerConnection(MaximumActiveSessionPerConnection);
         pooledConnectionFactory.setMaxConnections(maxConnections);
         pooledConnectionFactory.setIdleTimeout(idleTimeout);
         pooledConnectionFactory.setExpiryTimeout(expiryTimeout);
@@ -83,7 +78,6 @@ public class ActiveMqConfig {
     }
 
     @Bean(name = "outConnectionFactory")
-    @Primary
     public PooledConnectionFactory secondConnectionFactory(
             @Value("${spring.out.activemq.brokerUrl}") String brokerUrl,
             @Value("${spring.out.activemq.user}") String username,
@@ -94,7 +88,6 @@ public class ActiveMqConfig {
         factory.setPassword(password);
 
         PooledConnectionFactory pooledConnectionFactory = new PooledConnectionFactory(factory);
-        pooledConnectionFactory.setMaximumActiveSessionPerConnection(MaximumActiveSessionPerConnection1);
         pooledConnectionFactory.setMaxConnections(maxConnections1);
         pooledConnectionFactory.setIdleTimeout(idleTimeout1);
         pooledConnectionFactory.setExpiryTimeout(expiryTimeout1);
@@ -111,6 +104,7 @@ public class ActiveMqConfig {
     }
 
     @Bean(name = "firstJmsTemplate")
+    @Primary
     public JmsTemplate getFirstJmsTemplate(@Qualifier("innerConnectionFactory") ConnectionFactory connectionFactory) {
         JmsTemplate template = new JmsTemplate(connectionFactory);
         return template;
