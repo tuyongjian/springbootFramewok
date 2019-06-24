@@ -16,8 +16,18 @@ public class ActivemqConsumer {
 
     private Logger logger = LoggerFactory.getLogger(ActivemqConsumer.class);
 
-    @JmsListener(destination = "tu",containerFactory = "innerFactory")
+    @JmsListener(destination = "tu")
     public void readmsg(String msg){
+        logger.info("activemq接收的消息为--"+msg);
+    }
+
+    @JmsListener(destination = "test1")
+    public void test1(String msg){
+        logger.info("activemq接收的消息为--"+msg);
+    }
+
+    @JmsListener(destination = "test")
+    public void test(String msg){
         logger.info("activemq接收的消息为--"+msg);
     }
 }
