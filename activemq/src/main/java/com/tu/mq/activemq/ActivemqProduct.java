@@ -26,7 +26,7 @@ import javax.jms.Session;
 @RequestMapping(value = "activemq")
 public class ActivemqProduct {
 
-    @Autowired
+    /*@Autowired
     @Qualifier("firstJmsTemplate")
     private JmsTemplate jmsTemplate;
 
@@ -48,7 +48,7 @@ public class ActivemqProduct {
         //还原
     }
 
-
+*/
     public static MessageCreator createMsg(final Object o){
         if (null == o) return null;
         return new MessageCreator() {

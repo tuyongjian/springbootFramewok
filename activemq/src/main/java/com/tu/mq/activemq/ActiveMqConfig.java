@@ -1,3 +1,4 @@
+/*
 package com.tu.mq.activemq;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -14,11 +15,13 @@ import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.ConnectionFactory;
 
+*/
 /*
  * @Description
  * @Classname ActiveMqConfig
  * @Date 2019/6/19 14:42
- * @Created by tuyongjian*/
+ * @Created by tuyongjian*//*
+
 
 
 @Configuration
@@ -70,7 +73,7 @@ public class ActiveMqConfig {
 
     @Bean(name = "innerFactory")
     public JmsListenerContainerFactory innerFactory(
-            @Qualifier("innerConnectionFactory") PooledConnectionFactory connectionFactory) {
+            @Qualifier("innerConnectionFactory") ConnectionFactory connectionFactory) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         factory.setSessionAcknowledgeMode(sessionAcknowledgeMode);
@@ -96,7 +99,7 @@ public class ActiveMqConfig {
 
     @Bean(name = "outFactory")
     public JmsListenerContainerFactory outFactory(
-            @Qualifier("outConnectionFactory") PooledConnectionFactory connectionFactory) {
+            @Qualifier("outConnectionFactory") ConnectionFactory connectionFactory) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         factory.setSessionAcknowledgeMode(sessionAcknowledgeMode1);
@@ -118,3 +121,4 @@ public class ActiveMqConfig {
     }
 
 }
+*/
