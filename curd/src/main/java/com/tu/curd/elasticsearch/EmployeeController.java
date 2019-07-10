@@ -27,7 +27,7 @@ public class EmployeeController {
     @RequestMapping("add")
     public String add() {
         Employee employee = new Employee();
-        employee.setId("1");
+        employee.setId("2");
         employee.setFirstName("xuxu");
         employee.setLastName("zh");
         employee.setAge(26);
