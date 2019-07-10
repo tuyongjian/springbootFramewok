@@ -14,10 +14,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>webapp</name>
-    <build>
-        <finalName>webapp</finalName>
-    </build>
-
 
     <dependencies>
         <dependency>
@@ -27,6 +23,21 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>webapp</finalName>
+
+        <!--这个作用webapp被另一个模块依赖，在 install的时候不加这个虽然被打包进去了，但是
+        不执行，所以要加以下这个-->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 
