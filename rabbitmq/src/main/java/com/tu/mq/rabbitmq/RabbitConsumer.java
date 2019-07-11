@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
  * 监听queue队列的消息
  */
 @Component
-@RabbitListener(queues = "queue")
 public class RabbitConsumer {
 
     private Logger logger = LoggerFactory.getLogger(RabbitConsumer.class);
 
     @RabbitHandler
+    @RabbitListener(queues = "queue",containerFactory = "rabbitListenerContainerFactory")
     public void process(String  message){
         logger.info("消费者接收的消息为{}",message);
     }

@@ -3,6 +3,7 @@ package com.tu.mq.rabbitmq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -18,8 +19,7 @@ public class RabbitAction {
     RabbitProducer producer;
 
     @RequestMapping(value = "test",method = RequestMethod.POST)
-    public void test(){
-        System.out.println("1111111111");
-        producer.send("test");
+    public void test(@RequestParam(value = "msg")String msg){
+        producer.send(msg);
     }
 }
