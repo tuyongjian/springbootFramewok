@@ -22,4 +22,10 @@ public class RabbitAction {
     public void test(@RequestParam(value = "msg")String msg){
         producer.send(msg);
     }
+
+
+    @RequestMapping(value = "test1",method = RequestMethod.POST)
+    public void test1(@RequestParam(value = "msg")String msg){
+        producer.send1(msg);
+    }
 }

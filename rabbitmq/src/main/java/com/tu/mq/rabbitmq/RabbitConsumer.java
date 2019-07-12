@@ -21,6 +21,24 @@ public class RabbitConsumer {
     @RabbitHandler
     @RabbitListener(queues = "queue",containerFactory = "rabbitListenerContainerFactory")
     public void process(String  message){
-        logger.info("消费者接收的消息为{}",message);
+        logger.info("消费者-1接收的消息为--{}",message);
+    }
+
+    @RabbitHandler
+    @RabbitListener(queues = "queue",containerFactory = "rabbitListenerContainerFactory")
+    public void process1(String  message){
+        logger.info("消费者-2接收的消息为--{}",message);
+    }
+
+    @RabbitHandler
+    @RabbitListener(queues = "#{autoDeleteQueue0.name}")
+    public void process2(String  message){
+        logger.info("消费者-1接收的消息为--{}",message);
+    }
+
+    @RabbitHandler
+    @RabbitListener(queues = "#{autoDeleteQueue1.name}")
+    public void process3(String  message){
+        logger.info("消费者-2接收的消息为--{}",message);
     }
 }

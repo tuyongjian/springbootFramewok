@@ -1,6 +1,7 @@
 package com.tu.mq.rabbitmq;
 
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,13 @@ public class RabbitProducer {
 
     @Autowired
     AmqpTemplate amqpTemplate;
+
+    @Autowired
+    private FanoutExchange fanoutExchange;
+
+    public void send1(String msg){
+        amqpTemplate.convertAndSend("fanout-exchange","",msg);
+    }
 
     /**
      * 向queue队列中发送消息
