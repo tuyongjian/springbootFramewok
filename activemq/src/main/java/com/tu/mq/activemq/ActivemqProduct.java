@@ -26,29 +26,21 @@ import javax.jms.Session;
 @RequestMapping(value = "activemq")
 public class ActivemqProduct {
 
-    /*@Autowired
-    @Qualifier("firstJmsTemplate")
-    private JmsTemplate jmsTemplate;
-
     @Autowired
-    @Qualifier("secondJmsTemplate")
-    private JmsTemplate jmsTemplate1;
+    private JmsTemplate jmsTemplate;
 
     @RequestMapping(value = "test",method = RequestMethod.POST)
     public void test(@RequestParam(value = "msg")String msg){
         MessageCreator mc = createMsg(msg);
-        jmsTemplate1.convertAndSend("test",msg);
-        //还原
+        jmsTemplate.convertAndSend("test",msg);
     }
 
     @RequestMapping(value = "send",method = RequestMethod.POST)
     public void send(@RequestParam(value = "msg")String msg){
             MessageCreator mc = createMsg(msg);
             jmsTemplate.send(new ActiveMQQueue("tu"),mc);
-        //还原
     }
 
-*/
     public static MessageCreator createMsg(final Object o){
         if (null == o) return null;
         return new MessageCreator() {
