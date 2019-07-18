@@ -1,5 +1,5 @@
 # dockerfile 基础配置
-FROM daocloud.io/library/java:8u40-b22
+FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 ARG JAR_FILE
 ADD ${JAR_FILE} /app/app.jar
