@@ -38,6 +38,9 @@
             </plugin>
             <plugin>
                 <!--使用这个插件，Dockerfile 必须和pom在同一级-->
+                <!--使用dockerfile 插件的时候，先进行install 然后使用dockerfile build进行build
+                构建，这个时候会在docker中生成相应的镜像，然后使用dockerfile push命令把相应的镜像
+                推送到相应的镜像仓库中-->
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.4.9</version>
