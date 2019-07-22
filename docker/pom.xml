@@ -46,7 +46,9 @@
                 <version>1.4.9</version>
                 <configuration>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-                    <repository>120.55.49.58:5000/v2/${project.build.finalName}</repository>
+                    <username>屠yongjian</username>
+                    <password>tu5002805846</password>
+                    <repository>registry.cn-hangzhou.aliyuncs.com/tuyongjian/tuyongjian_registry/${project.build.finalName}</repository>
                     <buildArgs>
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>
