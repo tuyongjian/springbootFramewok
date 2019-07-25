@@ -30,4 +30,16 @@ public class TestAction {
     public Result test1(){
        throw new MyException("500","test exception");
     }
+
+    public static void main(String[] args) {
+        int sum = 7755;
+        for (int i =1; i <=30 ; i++) {
+            for (int j = 1; j <=12 ; j++) {
+                int a = sum-14;
+                sum = sum-14;
+                System.out.println("第"+i+"年----第"+j+"月-----"+a);
+            }
+        }
+
+    }
 }
