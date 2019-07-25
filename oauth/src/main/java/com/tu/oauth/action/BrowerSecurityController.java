@@ -27,7 +27,7 @@ import java.io.IOException;
  * @Created by tuyongjian
  */
 @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-@RestController(value = "oauth")
+@RestController
 public class BrowerSecurityController {
 
     /**
@@ -72,4 +72,7 @@ public class BrowerSecurityController {
         //如果不是，返回一个json 字符串
         return new Response("访问的服务需要身份认证，请引导用户到登录页");
     }
+
+
+
 }
