@@ -40,7 +40,7 @@ public class MyControllerAdvice {
     @ExceptionHandler(value = Exception.class)
     public Result errorHandler(Exception ex) {
         Result result = new Result();
-        result.setState("500");
+        result.setResult("500");
         result.setMessage(ex.getMessage());
         return result;
     }
@@ -49,7 +49,7 @@ public class MyControllerAdvice {
     @ExceptionHandler(value = MyException.class)
     public Result myErrorHandler(MyException ex) {
         Result result = new Result();
-        result.setState(ex.getCode());
+        result.setResult(ex.getCode());
         result.setMessage(ex.getMsg());
         return result;
     }
