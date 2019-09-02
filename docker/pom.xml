@@ -45,10 +45,19 @@
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.4.9</version>
                 <configuration>
+                    <!--useMavenSettingsForAuth为ture表示
+                    这是进行maven setting文件进行验证要在setting文件里进行配置一个server节点 id
+                    就是远程服务器的地址，username 和password进行用户名和密码的配置
+                        <server>
+                          <id>registry.cn-hangzhou.aliyuncs.com</id>
+                          <username>XXXX</username>
+                          <password>XXXX</password>
+                        </server>
+                    -->
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-                    <username>屠yongjian</username>
-                    <password>tu5002805846</password>
-                    <repository>registry.cn-hangzhou.aliyuncs.com/tuyongjian/tuyongjian_registry/${project.build.finalName}</repository>
+                    <username>XXXX</username>
+                    <password>XXXX</password>
+                    <repository>registry.cn-hangzhou.aliyuncs.com/tuyongjian/tuyongjian</repository>
                     <buildArgs>
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>

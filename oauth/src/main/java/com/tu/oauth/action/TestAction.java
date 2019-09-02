@@ -15,7 +15,7 @@ public class TestAction {
 
     @RequestMapping("/sign")
     public String sign(Model model) {
-        model.addAttribute("hello","你好");
+        model.addAttribute("hell   o","你好");
         return "sign";
     }
 }
