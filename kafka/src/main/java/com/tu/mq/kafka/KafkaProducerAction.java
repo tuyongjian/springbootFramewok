@@ -28,6 +28,6 @@ public class KafkaProducerAction {
     public Result sendKafkaMessage(){
         String message = "1111";
         kafkaTemplate.send("test","key",message);
-        return new Result("200","发送成功");
+        return new Result(true,"发送成功");
     }
 }
