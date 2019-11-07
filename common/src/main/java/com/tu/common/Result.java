@@ -29,6 +29,11 @@ public class Result {
     public Result() {
     }
 
+    public Result(String message, String result) {
+        this.message = message;
+        this.result = result;
+    }
+
     public Result(boolean success, String message) {
         this.success = success;
         this.message = message;
