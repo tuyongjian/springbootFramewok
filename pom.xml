@@ -24,7 +24,6 @@
     <module>rabbitmq</module>
     <module>webapp</module>
     <module>apollo</module>
-    <module>oauth</module>
     <module>shiro</module>
   </modules>
 
