@@ -12,19 +12,21 @@
 
   <!--各个子模块集合-->
   <modules>
-    <module>common</module>
-    <module>curd</module>
-    <module>redis</module>
-    <module>springadmin</module>
-    <module>springadminclient</module>
-    <module>docker</module>
-    <module>swagger</module>
-	<module>kafka</module>
-	<module>activemq</module>
-    <module>rabbitmq</module>
-    <module>webapp</module>
-    <module>apollo</module>
-    <module>shiro</module>
+      <module>common</module>
+      <module>curd</module>
+      <module>redis</module>
+      <module>springadmin</module>
+      <module>springadminclient</module>
+      <module>docker</module>
+      <module>swagger</module>
+      <module>kafka</module>
+      <module>activemq</module>
+      <module>rabbitmq</module>
+      <module>webapp</module>
+      <module>apollo</module>
+      <module>shiro</module>
+      <module>dubboServer</module>
+      <module>dubboConsumer</module>
   </modules>
 
   <!-- 定义公共资源版本 -->
