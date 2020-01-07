@@ -27,6 +27,7 @@
       <module>shiro</module>
       <module>dubboServer</module>
       <module>dubboConsumer</module>
+      <module>curdMasterAndSlave</module>
   </modules>
 
   <!-- 定义公共资源版本 -->
