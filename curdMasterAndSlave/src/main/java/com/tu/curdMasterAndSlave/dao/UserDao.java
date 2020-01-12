@@ -9,8 +9,7 @@ import java.util.List;
 /**
  * Created by tuyongjian on 2019/1/6.
  */
-@Mapper
-@Repository
+
 public interface UserDao {
 
     User selectUser(int id);

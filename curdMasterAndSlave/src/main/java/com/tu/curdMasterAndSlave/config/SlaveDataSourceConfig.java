@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -19,7 +20,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
  * @Description:
  */
 @Configuration
-@MapperScan(basePackages = "com.tu.curdMasterAndSlave.dao.*.dao", sqlSessionFactoryRef = "slaveSqlSessionFactory")
+@MapperScan(basePackages = "com.tu.curdMasterAndSlave.dao", sqlSessionFactoryRef = "slaveSqlSessionFactory")
 public class SlaveDataSourceConfig {
 
     @Bean(name = "slave")
@@ -30,22 +31,24 @@ public class SlaveDataSourceConfig {
 
 
     @Bean(name = "slaveTransactionManager")
-    @Primary
     public DataSourceTransactionManager masterTransactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
 
     @Bean(name = "slaveSqlSessionFactory")
-    @Primary
     public SqlSessionFactory masterSqlSessionFactory(@Qualifier("slave") DruidDataSource slave) throws Exception {
-        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(slave);
-        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:com/tu/curdMasterAndSlave/mapper/mapper/*.xml"));
-        return sessionFactory.getObject();
+        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+        //数据源
+        factoryBean.setDataSource(slave);
+        //mapper路径
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        Resource[] resources = resolver.getResources("classpath*:mybatis/mapper/*.xml");
+        factoryBean.setMapperLocations(resources);
+        return factoryBean.getObject();
     }
 
     @Bean(name = "slaveSqlSessionTemplate")
-    public SqlSessionTemplate sqlSessionTemplate(@Qualifier("slaveSqlSessionFactory")SqlSessionFactory sqlSessionFactory){
+    public SqlSessionTemplate slaveSqlSessionTemplate(@Qualifier("slaveSqlSessionFactory")SqlSessionFactory sqlSessionFactory){
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }

@@ -40,7 +40,7 @@ public class MySqlAction {
     }
 
     @ResponseBody
-    @RequestMapping(value = "queryByPage",method = RequestMethod.POST)
+    @RequestMapping(value = "queryByPage",method = RequestMethod.GET)
     public Result queryByPage(ModelMap model){
 
         PageHelper.startPage(1, 3, true);

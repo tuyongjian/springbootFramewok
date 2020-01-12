@@ -14,6 +14,8 @@ public class User implements Serializable {
 
     private String userName;
 
+    private String realName;
+
     private String password;
 
     private String mobile;
@@ -27,6 +29,14 @@ public class User implements Serializable {
     private Timestamp updateTime;
 
     private String remark;
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
 
     public Integer getId() {
         return id;
