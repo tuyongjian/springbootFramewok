@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tu.mysql.dao.UserDao" >
+
+    <!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 只要在对应的mapper配置文件中加入<cache />标签即可-->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
+
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <!--30s-->
+        <property name="timeToIdleSeconds" value="60" />
+        <!--30s-->
+        <property name="timeToLiveSeconds" value="60" />
+        <property name="maxEntriesLocalHeap" value="1000" />
+        <property name="maxEntriesLocalDisk" value="100000" />
+        <property name="memoryStoreEvictionPolicy" value="LRU" />
+    </cache>
+
+
+    <resultMap id="UserResultMap" type="User" >
+        <id column="id" property="id" javaType="int" jdbcType="INTEGER" />
+        <result column="user_name" property="userName" javaType="String" jdbcType="VARCHAR" />
+        <result column="password" property="password" javaType="String" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" javaType="String" jdbcType="VARCHAR" />
+        <result column="email" property="email" javaType="String" jdbcType="VARCHAR"/>
+        <result column="address" property="address" javaType="String" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+
+    <select id="selectUser" resultMap="UserResultMap" parameterType="java.lang.Integer" useCache="true" >
+        select *
+        from USER
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectCount" resultType="int" useCache="true">
+        select count(*)
+        from USER
+    </select>
+
+    <select id="queryUserByPage" resultMap="UserResultMap" useCache="true">
+        select *from USER
+    </select>
+
+
+
+
+    <select id="procedure" resultType="int" statementType="CALLABLE">
+        call sp_name()
+    </select>
+
+    <update id="update" parameterType="User">
+        update USER
+        <set>
+            <if test="userName!=null and userName!='' "  >
+              user_name =  #{userName,javaType=String,jdbcType=VARCHAR},
+            </if>
+            <if test="password!=null and password!='' "  >
+                password =  #{password,javaType=String,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile!=null and mobile!='' "  >
+                mobile =  #{mobile,javaType=String,jdbcType=VARCHAR},
+            </if>
+            <if test="email!=null and email!='' "  >
+                email =  #{email,javaType=String,jdbcType=VARCHAR},
+            </if>
+            <if test="address!=null and address!='' "  >
+                address =  #{address,javaType=String,jdbcType=VARCHAR},
+            </if>
+            <if test="remark!=null and remark!='' "  >
+                remark =  #{remark,javaType=String,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null and updateTime!='' "  >
+                update_time = #{updateTime,javaType=java.sql.Timestamp,jdbcType=TIMESTAMP}
+            </if>
+        </set>
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insert" parameterType="User"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
+        insert into USER(
+          user_name,
+          password,
+          mobile,
+          email,
+          address,
+          create_time,
+          update_time,
+          remark
+        )values (
+            #{userName,javaType=String,jdbcType=VARCHAR},
+            #{password,javaType=String,jdbcType=VARCHAR},
+            #{mobile,javaType=String,jdbcType=VARCHAR},
+            #{email,javaType=String,jdbcType=VARCHAR},
+            #{address,javaType=String,jdbcType=VARCHAR},
+            #{createTime,javaType=java.sql.Timestamp,jdbcType=TIMESTAMP},
+            #{updateTime,javaType=java.sql.Timestamp,jdbcType=TIMESTAMP},
+            #{remark,javaType=String,jdbcType=VARCHAR}
+        )
+    </insert>
+
+</mapper>

@@ -41,4 +41,28 @@ public class CurdMasterAndSlaveAction {
     public List<User> slave(){
         return SqlMapperFactory.buildSlave(UserDao.class).queryUserByPage();
     }
+
+    public static void main(String[] args) {
+        CurdMasterAndSlaveAction curdMasterAndSlaveAction = new CurdMasterAndSlaveAction();
+        curdMasterAndSlaveAction.test(10);
+
+    }
+
+    int test(int a){
+        boolean isExist = false;
+        int result = 100;
+        for (int i = 0; i <a ; i++) {
+            if(i==5){
+                isExist = true;
+                break;
+            }else{
+                System.out.println(i);
+            }
+        }
+        if(isExist){
+            return test(4);
+        }else{
+            return result;
+        }
+    }
 }

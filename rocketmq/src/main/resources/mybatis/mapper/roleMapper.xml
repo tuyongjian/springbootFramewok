@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tu.mysql.dao.RoleDao" >
+    <resultMap id="RoleResultMap" type="com.tu.mysql.model.Role" >
+        <id column="id" property="id" javaType="int" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" javaType="int" jdbcType="INTEGER" />
+        <result column="role_name" property="roleName" javaType="String" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="selectSql">
+        <where>
+            <if test="id!=null">
+               AND id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="userId!=null">
+               AND user_id= #{userId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="selectRole" resultMap="RoleResultMap" parameterType="com.tu.mysql.model.Role">
+        select *
+        from ROLE
+       <include refid="selectSql"/>
+    </select>
+
+    <insert id="insert" parameterType="com.tu.mysql.model.Role">
+        insert into ROLE(
+          user_id,
+          role_name
+        )values (
+            #{userId,jdbcType=INTEGER},
+            #{roleName,javaType=String,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+
+</mapper>
