@@ -6,9 +6,11 @@ import org.apache.rocketmq.client.producer.TransactionListener;
 import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.*;
 
@@ -17,11 +19,14 @@ import java.util.concurrent.*;
  * @Date: 2019/10/23 16:30
  * @Description:带事务处理的生产者配置
  */
-@SpringBootConfiguration
+@Configuration
 public class MQTransProducerConfiguration {
 
 
         public static final Logger LOGGER = LoggerFactory.getLogger(MQTransProducerConfiguration.class);
+
+        @Autowired
+        TransactionListener transactionListener;
         /**
          * 发送同一类消息的设置为同一个group，保证唯一,默认不需要设置，rocketmq会使用ip@pid(pid代表jvm名字)作为唯一标示
          */
@@ -47,7 +52,7 @@ public class MQTransProducerConfiguration {
         private Integer retryTimesWhenSendFailed;
 
         @Bean
-        public TransactionMQProducer getRocketMQProducer() throws Exception {
+        public TransactionMQProducer getTransRocketMQProducer() throws Exception {
             if (StringUtils.isEmpty(this.groupName)) {
                 throw new Exception("groupName is blank");
             }
@@ -71,7 +76,7 @@ public class MQTransProducerConfiguration {
             producer.setCheckThreadPoolMaxSize(20);   // 事务回查最大并发数
             producer.setCheckRequestHoldMax(2000);    // 队列数
             //事务监听器
-            TransactionListener transactionListener = new MQTransProducerListener();
+
             producer.setTransactionListener(transactionListener);
 
             ExecutorService executorService = new ThreadPoolExecutor(2, 5, 100, TimeUnit.SECONDS,
@@ -94,7 +99,7 @@ public class MQTransProducerConfiguration {
             try {
                 producer.start();
 
-                LOGGER.info(String.format("生产者producer is start ! groupName:[%s],namesrvAddr:[%s]"
+                LOGGER.info(String.format("生产者事务producer is start ! groupName:[%s],namesrvAddr:[%s]"
                         , this.groupName, this.namesrvAddr));
             } catch (Exception e) {
                 LOGGER.error(String.format("producer is error {}"

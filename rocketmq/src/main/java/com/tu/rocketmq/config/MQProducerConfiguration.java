@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
  * @Date: 2019/10/23 16:30
  * @Description:生产者配置
  */
-@SpringBootConfiguration
+//@SpringBootConfiguration
 public class MQProducerConfiguration{
 
 

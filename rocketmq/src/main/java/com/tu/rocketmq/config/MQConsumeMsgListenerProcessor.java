@@ -58,12 +58,12 @@ public class MQConsumeMsgListenerProcessor implements MessageListenerConcurrentl
                     role.setRoleName("ROCKET_MQ");
                     String msgBody = new String(messageExt.getBody(), RemotingHelper.DEFAULT_CHARSET);
                     role.setUserId(Integer.parseInt(msgBody));
-                    int i = 1/0;
                     roleService.add(role);
                     logger.info("消费成功。。。。。。。。。。。。。");
 
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    logger.info("消费出现异常："+e.getMessage());
+                    return ConsumeConcurrentlyStatus.RECONSUME_LATER;
                 }
 
             }
