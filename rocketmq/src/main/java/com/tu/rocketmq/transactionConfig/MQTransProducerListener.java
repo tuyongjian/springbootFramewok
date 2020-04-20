@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @Date: 2020/4/20 17:03
  * @Description:生产者的事务监听器
  */
-public class MQTransProducerListener implements TransactionListener {
+public class MQTransProducerListener implements TransactionListener  {
 
     //执行本地事务
     @Override
