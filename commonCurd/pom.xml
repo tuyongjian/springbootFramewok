@@ -10,10 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.tu.springbootFramework</groupId>
-    <artifactId>rocketmq</artifactId>
+    <artifactId>commonCurd</artifactId>
     <packaging>jar</packaging>
 
-    <name>rocketmq</name>
+    <name>commonCurd</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,22 +28,9 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>4.5.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tu.springbootFramework</groupId>
-            <artifactId>commonCurd</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
     </dependencies>
 
     <build>
-        <finalName>rocketmq</finalName>
+       <finalName>commonCurd</finalName>
     </build>
 </project>

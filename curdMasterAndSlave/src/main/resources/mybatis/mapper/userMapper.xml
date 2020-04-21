@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tu.curdMasterAndSlave.dao.UserDao" >
+<mapper namespace="com.tu.curdMasterAndSlave.UserDao" >
 
     <resultMap id="UserResultMap"  type="com.tu.curdMasterAndSlave.model.User">
         <id column="id" property="id" javaType="int" jdbcType="INTEGER" />

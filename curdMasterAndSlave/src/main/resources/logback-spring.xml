@@ -42,7 +42,7 @@
     <logger name="org.mybatis" level="INFO"/>
     <logger name="org.springframework" level="INFO"/>
     <!--加上这一局可以打印出sql日志 或者把root level 设置为dubug级别都可以-->
-    <logger name="com.tu.curdMasterAndSlave.dao.UserDao" level="DEBUG"></logger>
+    <logger name="com.tu.curdMasterAndSlave.UserDao" level="DEBUG"></logger>
 
     <!-- 日志输出级别 -->
     <root level="info">

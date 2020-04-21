@@ -30,6 +30,8 @@
       <module>curdMasterAndSlave</module>
     <module>mycat</module>
     <module>rocketmq</module>
+      <module>commonCurd</module>
+      <module>springbootRocketmq</module>
   </modules>
 
   <!-- 定义公共资源版本 -->
