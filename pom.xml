@@ -32,6 +32,7 @@
     <module>rocketmq</module>
       <module>commonCurd</module>
       <module>springbootRocketmq</module>
+      <module>nacos</module>
   </modules>
 
   <!-- 定义公共资源版本 -->
