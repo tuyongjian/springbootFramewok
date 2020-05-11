@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  */
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@NacosPropertySource(dataId = "nacos-demo",autoRefreshed = true)
+@NacosPropertySource(dataId = "nacos-demo",groupId = "nacos-group",autoRefreshed = true)
 public class NacosApplication
 {
     public static void main( String[] args )
