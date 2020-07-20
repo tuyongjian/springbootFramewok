@@ -28,11 +28,12 @@
       <module>dubboServer</module>
       <module>dubboConsumer</module>
       <module>curdMasterAndSlave</module>
-    <module>mycat</module>
-    <module>rocketmq</module>
+      <module>mycat</module>
+      <module>rocketmq</module>
       <module>commonCurd</module>
       <module>springbootRocketmq</module>
       <module>nacos</module>
+	  <module>springsession</module>
   </modules>
 
   <!-- 定义公共资源版本 -->

@@ -1,4 +1,4 @@
-package com.tu.mycat;
+package com.tu.springsession;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description:
  */
 @SpringBootApplication
-public class MycatApplication {
+public class SpringSessionApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MycatApplication.class,args);
+        SpringApplication.run(SpringSessionApplication.class,args);
     }
 }
