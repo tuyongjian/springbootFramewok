@@ -13,7 +13,7 @@
     <artifactId>springsession</artifactId>
     <packaging>jar</packaging>
 
-    <name>mycat</name>
+    <name>springsession</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
