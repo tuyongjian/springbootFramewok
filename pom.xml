@@ -34,6 +34,7 @@
       <module>springbootRocketmq</module>
       <module>nacos</module>
 	  <module>springsession</module>
+    <module>timeTask</module>
   </modules>
 
   <!-- 定义公共资源版本 -->
