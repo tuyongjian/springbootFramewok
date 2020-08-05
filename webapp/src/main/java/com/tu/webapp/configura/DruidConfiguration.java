@@ -33,6 +33,7 @@ public class DruidConfiguration {
         return servletRegistrationBean;
     }
 
+    @Bean
     public FilterRegistrationBean starFilter(){
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
 
