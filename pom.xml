@@ -35,6 +35,7 @@
       <module>nacos</module>
 	  <module>springsession</module>
     <module>timeTask</module>
+    <module>sentinel</module>
   </modules>
 
   <!-- 定义公共资源版本 -->
