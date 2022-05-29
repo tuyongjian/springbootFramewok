@@ -1,0 +1,19 @@
+server:
+  port: 1127
+
+spring:
+  application:
+    name: Springboot-redis
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:1125/monitor
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0

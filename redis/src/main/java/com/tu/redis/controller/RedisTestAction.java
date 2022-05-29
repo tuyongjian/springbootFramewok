@@ -17,7 +17,7 @@ public class RedisTestAction {
     private RedisUtil redisUtil;
 
     @ResponseBody
-    @RequestMapping(value = "/test",method = RequestMethod.POST)
+    @GetMapping(value = "/test")
     public String test(){
         redisUtil.set("test","adfafa");
         return redisUtil.get("test").toString();

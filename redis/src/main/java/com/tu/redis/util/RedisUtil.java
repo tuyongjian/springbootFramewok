@@ -1,20 +1,25 @@
 package com.tu.redis.util;
 
+import com.google.common.hash.Funnels;
+import com.google.common.hash.Hashing;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisStringCommands;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.nio.charset.Charset;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Description
- * @Classname RedisUtil
- * @Date 2019/4/28 14:18
- * @Created by tuyongjian
+ *  RedisUtil
+ * @date 2019/4/28 14:18
+ * @created by tuyongjian
  */
 @Component
 public class RedisUtil {
@@ -23,11 +28,131 @@ public class RedisUtil {
     private RedisTemplate<String, Object> redisTemplate;
 
 
+
+    /*********************************************************************************
+     *
+     * 对bitmap的操作
+     *
+     ********************************************************************************/
+
+    /**
+     * 将指定param的值设置为1，{@param param}会经过hash计算进行存储。
+     *
+     * @param key   bitmap结构的key
+     * @param param 要设置偏移的key，该key会经过hash运算。
+     * @param value true：即该位设置为1，否则设置为0
+     * @return 返回设置该value之前的值。
+     */
+    public  Boolean setBit(String key, String param, boolean value) {
+        return redisTemplate.opsForValue().setBit(key, hash(param), value);
+    }
+
+    /**
+     * 将指定param的值设置为0，{@param param}会经过hash计算进行存储。
+     *
+     * @param key   bitmap结构的key
+     * @param param 要移除偏移的key，该key会经过hash运算。
+     * @return 若偏移位上的值为1，那么返回true。
+     */
+    public  Boolean getBit(String key, String param) {
+        return redisTemplate.opsForValue().getBit(key, hash(param));
+    }
+
+
+    /**
+     * 将指定offset偏移量的值设置为1；
+     *
+     * @param key    bitmap结构的key
+     * @param offset 指定的偏移量。
+     * @param value  true：即该位设置为1，否则设置为0
+     * @return 返回设置该value之前的值。
+     */
+    public  Boolean setBit(String key, Long offset, boolean value) {
+        return redisTemplate.opsForValue().setBit(key, offset, value);
+    }
+
+    /**
+     * 将指定offset偏移量的值设置为0；
+     *
+     * @param key    bitmap结构的key
+     * @param offset 指定的偏移量。
+     * @return 若偏移位上的值为1，那么返回true。
+     */
+    public  Boolean getBit(String key, long offset) {
+        return redisTemplate.opsForValue().getBit(key, offset);
+    }
+
+    /**
+     * 统计对应的bitmap上value为1的数量
+     *
+     * @param key bitmap的key
+     * @return value等于1的数量
+     */
+    public  Long bitCount(String key) {
+        return redisTemplate.execute((RedisCallback<Long>) con -> con.bitCount(key.getBytes()));
+    }
+
+    /**
+     * 统计指定范围中value为1的数量
+     *
+     * @param key   bitMap中的key
+     * @param start 该参数的单位是byte（1byte=8bit），{@code setBit(key,7,true);}进行存储时，单位是bit。那么只需要统计[0,1]便可以统计到上述set的值。
+     * @param end   该参数的单位是byte。
+     * @return 在指定范围[start*8,end*8]内所有value=1的数量
+     */
+    public  Long bitCount(String key, int start, int end) {
+        return redisTemplate.execute((RedisCallback<Long>) con -> con.bitCount(key.getBytes(), start, end));
+    }
+
+
+    /**
+     * 对一个或多个保存二进制的字符串key进行元操作，并将结果保存到saveKey上。
+     * <p>
+     * bitop and saveKey key [key...]，对一个或多个key逻辑并，结果保存到saveKey。
+     * bitop or saveKey key [key...]，对一个或多个key逻辑或，结果保存到saveKey。
+     * bitop xor saveKey key [key...]，对一个或多个key逻辑异或，结果保存到saveKey。
+     * bitop xor saveKey key，对一个或多个key逻辑非，结果保存到saveKey。
+     * <p>
+     *
+     * @param op      元操作类型；
+     * @param saveKey 元操作后将结果保存到saveKey所在的结构中。
+     * @param desKey  需要进行元操作的类型。
+     * @return 1：返回元操作值。
+     */
+    public  Long bitOp(RedisStringCommands.BitOperation op, String saveKey, String... desKey) {
+        byte[][] bytes = new byte[desKey.length][];
+        for (int i = 0; i < desKey.length; i++) {
+            bytes[i] = desKey[i].getBytes();
+        }
+        return redisTemplate.execute((RedisCallback<Long>) con -> con.bitOp(op, saveKey.getBytes(), bytes));
+    }
+
+    /**
+     * 对一个或多个保存二进制的字符串key进行元操作，并将结果保存到saveKey上，并返回统计之后的结果。
+     *
+     * @param op      元操作类型；
+     * @param saveKey 元操作后将结果保存到saveKey所在的结构中。
+     * @param desKey  需要进行元操作的类型。
+     * @return 返回saveKey结构上value=1的所有数量值。
+     */
+    public  Long bitOpResult(RedisStringCommands.BitOperation op, String saveKey, String... desKey) {
+        bitOp(op, saveKey, desKey);
+        return bitCount(saveKey);
+    }
+
+
+    /**
+     * guava依赖获取hash值。
+     */
+    private  long hash(String key) {
+        Charset charset = Charset.forName("UTF-8");
+        return Math.abs(Hashing.murmur3_128().hashObject(key, Funnels.stringFunnel(charset)).asInt());
+    }
+
+
+
     /**
      * 指定缓存失效时间
-     * @param key
-     * @param time
-     * @return
      */
     public boolean expire(String key,long time){
         if(time>0){
@@ -38,8 +163,6 @@ public class RedisUtil {
 
     /**
      * 根据key获取过期时间
-     * @param key
-     * @return
      */
     public long getExpire(String key){
         return redisTemplate.getExpire(key);
@@ -47,8 +170,6 @@ public class RedisUtil {
 
     /**
      * 判断key是否存在
-     * @param key
-     * @return
      */
     public boolean hasKey(String key){
         return redisTemplate.hasKey(key);
@@ -58,8 +179,6 @@ public class RedisUtil {
     /**
      * 删除缓存
      *
-     * @param key
-     *            可以传一个值 或多个
      */
     @SuppressWarnings("unchecked")
     public void del(String... key) {
@@ -67,7 +186,7 @@ public class RedisUtil {
             if (key.length == 1) {
                 redisTemplate.delete(key[0]);
             } else {
-                redisTemplate.delete(CollectionUtils.arrayToList(key));
+                redisTemplate.delete((Collection<String>) CollectionUtils.arrayToList(key));
             }
         }
     }
@@ -76,9 +195,6 @@ public class RedisUtil {
     /**
      * 普通缓存获取
      *
-     * @param key
-     *            键
-     * @return 值
      */
     public Object get(String key) {
         return key == null ? null : redisTemplate.opsForValue().get(key);
@@ -87,11 +203,6 @@ public class RedisUtil {
     /**
      * 普通缓存放入
      *
-     * @param key
-     *            键
-     * @param value
-     *            值
-     * @return true成功 false失败
      */
     public boolean set(String key, Object value) {
         try {
@@ -106,14 +217,7 @@ public class RedisUtil {
 
     /**
      * 普通缓存放入并设置时间
-     *
-     * @param key
-     *            键
-     * @param value
-     *            值
-     * @param time
-     *            时间(秒) time要大于0 如果time小于等于0 将设置无限期
-     * @return true成功 false 失败
+
      */
     public boolean set(String key, Object value, long time) {
         try {
@@ -132,10 +236,6 @@ public class RedisUtil {
     /**
      * 递增
      *
-     * @param key
-     *            键
-     * @param delta 要增加几(大于0)
-     * @return
      */
     public long incr(String key, long delta) {
         if (delta < 0) {
@@ -147,9 +247,6 @@ public class RedisUtil {
     /**
      * 递减
      *
-     * @param key 键
-     * @param delta  要减少几(小于0)
-     * @return
      */
     public long decr(String key, long delta) {
         if (delta < 0) {
@@ -166,7 +263,6 @@ public class RedisUtil {
      *            键 不能为null
      * @param item
      *            项 不能为null
-     * @return 值
      */
     public Object hget(String key, String item) {
         return redisTemplate.opsForHash().get(key, item);
